@@ -19,6 +19,11 @@ public interface AbstractGraph<T, E> {
 	 */
 	public boolean hasAdjacent(T t1, T t2);
 	
+	/**
+	 * Not used in any examples but useful in cases like TopSort
+	 * @param t
+	 * @return
+	 */
 	public boolean hasIncommingEdges(T t);
 	/**
 	 * Returns all AbstractNode:s with a edge between them and t
@@ -39,10 +44,10 @@ public interface AbstractGraph<T, E> {
 	 */
 	public void deleteNode(T t);
 	
-	/*
+	
 	/**
-	 * Used to get the value of a specific node. 
-	 * @param t
+	 * @category Experimental
+	 * @param s value to find reference for
 	 * @return
 	 */
 	public <S> T getNodeReference(S s);
@@ -56,22 +61,22 @@ public interface AbstractGraph<T, E> {
 	
 	/**
 	 * Add directed edge between t1 ---> t2
-	 * @param t1
-	 * @param t2
+	 * @param t1 from
+	 * @param t2 to
 	 */
 	public void addEdge(T t1, T t2);
 	
 	/**
 	 * Removes directed edge t1 -/-> t3;
-	 * @param t1
-	 * @param t2
+	 * @param t1 from
+	 * @param t2 to
 	 */
 	public void delete(T t1, T t2);
 	
 	/**
 	 * Get edge value between t1 ---> t2
-	 * @param t1
-	 * @param t2
+	 * @param t1 from
+	 * @param t2 to
 	 * @returns value of type <E>
 	 */
 	public E getEdgeValue(T t1, T t2);
@@ -92,6 +97,10 @@ public interface AbstractGraph<T, E> {
 	 */
 	public void setEdgeCalculator(GraphEdgeOperator<T, E> op);
 
+	/**
+	 * Get nodes
+	 * @return
+	 */
 	public Collection<T> getNodes();
 	
 }

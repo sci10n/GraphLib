@@ -6,31 +6,20 @@ public class UniformCostGraphTest {
 
 	public void init(){
 		Graph<Integer,Integer> graph = new Graph<Integer, Integer>();
-		Integer n0 = new Integer(1);
-		Integer n1 = new Integer(2);
-		Integer n2 = new Integer(3);
-		Integer n3 = new Integer(4);
-		Integer n4 = new Integer(5);
-		graph.addNode(n0);
-		graph.addNode(n1);
-		graph.addNode(n2);
-		graph.addNode(n3);
-		graph.addNode(n4);
-		graph.addEdge(n0,n1);
-		graph.addEdge(n0,n2);
-		graph.addEdge(n1,n3);
-		graph.addEdge(n2,n3);
-		graph.addEdge(n0,n4);
+		graph.addNode(1);
+		graph.addNode(2);
+		graph.addNode(3);
+		graph.addNode(10);
+		graph.addEdge(1,2);
+		graph.addEdge(1,3);
+		graph.addEdge(3,2);
+		graph.addEdge(2,10);
 		
 		//Instead of setting all edges manually
 		graph.setEdgeCalculator((a,b) -> 1);
 		
 		System.out.println(graph.toString());
 		
-		
-		
-
-
 	}
 	
 	public static void main(String[] args) {

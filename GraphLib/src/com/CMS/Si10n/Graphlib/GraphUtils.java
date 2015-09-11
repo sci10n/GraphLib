@@ -8,12 +8,17 @@ import java.util.LinkedList;
 import java.util.PriorityQueue;
 import java.util.Stack;
 
+/**
+ * 
+ * @author HQ
+ * Utility methods to use with Graphs. Mostly search but some sort functions might be added
+ * Both start and goal needs to be in the same AbstractGraph for the search to find a connection.
+ */
+
 public class GraphUtils {
 
 	/**
-	 * Both start and goal needs to be in the same AbstractGraph for the search to find a connection.
-	 * <br>
-	 * If goal can't be found it will return all nodes connected to start.
+	 * If goal can't be found it will return null.
 	 * @param start
 	 * @param goal
 	 * @return
@@ -40,7 +45,12 @@ public class GraphUtils {
 		}
 		return reconstruct(goal, backtrack,graph);
 	}
-	
+	/**
+	 * If goal can't be found it will return null.
+	 * @param start
+	 * @param goal
+	 * @return
+	 */
 	public static <T, E> Collection<T> breadth_first_search(T start, T goal, AbstractGraph<T, E> graph){
 		LinkedList<T> frontier = new LinkedList<T>();
 		HashSet<T> explored = new HashSet<T>();
@@ -64,6 +74,12 @@ public class GraphUtils {
 		return reconstruct(goal, backtrack,graph);
 	}
 	
+	/**
+	 * Get all nodes accessible from the start node.
+	 * @param start
+	 * @param graph
+	 * @return
+	 */
 	public static <T, E> Collection<T> flood_fill(T start, AbstractGraph<T,E> graph){
 		LinkedList<T> frontier = new LinkedList<T>();
 		HashSet<T> explored = new HashSet<T>();
@@ -84,8 +100,6 @@ public class GraphUtils {
 		return explored;
 	}
 	/**
-	 * Will use the edge cost as heuristic. 
-	 * <br>
 	 * If the AbstractGraph doesn't have edges recalculated to fit the heuristic, change it!
 	 * <br>
 	 * @param start

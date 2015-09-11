@@ -3,7 +3,13 @@ package com.CMS.Si10n.Graphlib;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
-
+/**
+ * 
+ * @author Sci10n
+ *
+ * @param <T>
+ * @param <E>
+ */
 public class Graph<T,E> implements AbstractGraph<T,E>{
 	
 	private HashMap<T,HashMap<T,E>> edges;
