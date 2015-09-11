@@ -66,7 +66,7 @@ public class HeuristicGraphTest {
 		System.out.println(graph.toString());
 		System.out.println("Path");
 		
-		for(Vec2 v: GraphUtils.a_star_search(n0, n3, graph,((a,b) -> graph.getGetValue(a, b) == null ? 0:graph.getGetValue(a, b).intValue()))){
+		for(Vec2 v: GraphUtils.a_star_search(n0, n3, graph,((a,b) -> graph.getEdgeValue(a, b) == null ? 0:graph.getEdgeValue(a, b).intValue()))){
 			System.out.println(v.toString());
 		}
 		
@@ -74,7 +74,7 @@ public class HeuristicGraphTest {
 		graph.setEdgeCalculator((a,b) -> Math.sqrt(Math.pow(Math.abs(a.t1 - n3.t1),2) + (Math.pow(Math.abs(a.t2 - n3.t2),2))));
 		//Notice how the distance between n0 and n1 is the distance from n0 to n3 regardless of no edge between n0 and n3
 		System.out.println();
-		System.out.println(n0.toString() + " -> "+ n1.toString() + " = " + graph.getGetValue(n0, n1));
+		System.out.println(n0.toString() + " -> "+ n1.toString() + " = " + graph.getEdgeValue(n0, n1));
 	}
 	
 	public static void main(String[] args) {

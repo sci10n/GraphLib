@@ -14,14 +14,18 @@ public class Graph<T,E> implements AbstractGraph<T,E>{
 		edges = new HashMap<T, HashMap<T,E>>();
 		nodes = new HashSet<T>();
 	}
-	
+	public Graph(AbstractGraph<T,E> graph){
+		nodes = new HashSet<T>(graph.getNodes());
+	}
 	@Override
-	public boolean adjacent(T t1, T t2) {
-		return edges.get(t1).containsKey(t1);
+	public boolean hasAdjacent(T t1, T t2) {
+		if(edges.get(t1) == null)
+			return false;
+		return edges.get(t1).containsKey(t2);
 	}
 
 	@Override
-	public Collection<T> neighbors(T t) {
+	public Collection<T> getNeighbors(T t) {
 		HashSet<T> tmp = new HashSet<T>(); 
 		if(edges.get(t) != null)
 			tmp.addAll(edges.get(t).keySet());
@@ -59,9 +63,18 @@ public class Graph<T,E> implements AbstractGraph<T,E>{
 		if(!isStaticCosts())
 			recalculate();
 	}
-
+	
 	@Override
-	public E getGetValue(T t1, T t2) {
+	public <S> T getNodeReference(S s){
+		for(T t2: nodes){
+			if(t2.equals(s))
+				return t2;
+		}
+		return null;
+	}
+	
+	@Override
+	public E getEdgeValue(T t1, T t2) {
 		if(edges.get(t1) == null){
 			return null;
 		}
@@ -87,6 +100,15 @@ public class Graph<T,E> implements AbstractGraph<T,E>{
 		}
 	}
 	
+	@Override
+	public boolean hasIncommingEdges(T t){
+		for(T n: edges.keySet()){
+			if(edges.get(n).containsKey(t))
+				return true;
+		}
+		return false;
+	}
+	
 	public boolean isStaticCosts() {
 		return staticCosts;
 	}
@@ -98,5 +120,10 @@ public class Graph<T,E> implements AbstractGraph<T,E>{
 	@Override
 	public String toString() {
 		return super.toString() + "\n" + nodes.toString() + "\n" + edges.toString();
+	}
+
+	@Override
+	public Collection<T> getNodes() {
+		return nodes;
 	}
 }

@@ -31,7 +31,7 @@ public class GraphUtils {
 			if(c.equals(goal)){
 				break;
 			}
-			for(T n: graph.neighbors(c)){
+			for(T n: graph.getNeighbors(c)){
 				if(!explored.contains(n)){
 					frontier.addFirst(n);
 					backtrack.put(n, c);
@@ -54,7 +54,7 @@ public class GraphUtils {
 			if(c.equals(goal)){
 				break;
 			}
-			for(T n: graph.neighbors(c)){
+			for(T n: graph.getNeighbors(c)){
 				if(!explored.contains(n)){
 					frontier.addLast(n);
 					backtrack.put(n, c);
@@ -74,7 +74,7 @@ public class GraphUtils {
 		while(!frontier.isEmpty()){
 			T c = frontier.removeFirst();
 			explored.add(c);
-			for(T n: graph.neighbors(c)){
+			for(T n: graph.getNeighbors(c)){
 				if(!explored.contains(n)){
 					frontier.addLast(n);
 					backtrack.put(n, c);
@@ -107,7 +107,7 @@ public class GraphUtils {
 			if(c.equals(goal)){
 				break;
 			}
-			for(T n: graph.neighbors(c)){
+			for(T n: graph.getNeighbors(c)){
 				if(!explored.contains(n)){
 					frontier.add(n);
 					backtrack.put(n, c);

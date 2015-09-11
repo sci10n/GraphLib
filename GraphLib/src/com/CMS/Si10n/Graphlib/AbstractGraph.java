@@ -17,14 +17,15 @@ public interface AbstractGraph<T, E> {
 	 * @param t2
 	 * @return
 	 */
-	public boolean adjacent(T t1, T t2);
+	public boolean hasAdjacent(T t1, T t2);
 	
+	public boolean hasIncommingEdges(T t);
 	/**
 	 * Returns all AbstractNode:s with a edge between them and t
 	 * @param t
 	 * @return
 	 */
-	public Collection<T> neighbors(T t);
+	public Collection<T> getNeighbors(T t);
 	
 	/**
 	 * Adds Node t to the graph. Doesn't add any edges. Stored by hashCode value so make sure you keep a reference to that specific instance
@@ -44,8 +45,8 @@ public interface AbstractGraph<T, E> {
 	 * @param t
 	 * @return
 	 */
-	//public T getNodeValue(Node<T> t);
-	/*
+	public <S> T getNodeReference(S s);
+	
 	/**
 	 * Sets A specific Node (t):s value to s
 	 * @param t Node
@@ -73,7 +74,7 @@ public interface AbstractGraph<T, E> {
 	 * @param t2
 	 * @returns value of type <E>
 	 */
-	public E getGetValue(T t1, T t2);
+	public E getEdgeValue(T t1, T t2);
 	
 	/**
 	 *  Set value between t1 --> t2 to e
@@ -90,5 +91,7 @@ public interface AbstractGraph<T, E> {
 	 * @param op
 	 */
 	public void setEdgeCalculator(GraphEdgeOperator<T, E> op);
+
+	public Collection<T> getNodes();
 	
 }
