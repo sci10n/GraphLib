@@ -1,7 +1,7 @@
 package com.CMS.Si10n.Graphlib.runs;
 
 import com.CMS.Si10n.Graphlib.Graph;
-import com.CMS.Si10n.Graphlib.GraphSearch;
+import com.CMS.Si10n.Graphlib.GraphUtils;
 
 public class HeuristicGraphTest {
 	
@@ -66,7 +66,7 @@ public class HeuristicGraphTest {
 		System.out.println(graph.toString());
 		System.out.println("Path");
 		
-		for(Vec2 v: GraphSearch.a_star_search(n0, n3, graph,((a,b) -> graph.getGetValue(a, b) == null ? 0:graph.getGetValue(a, b).intValue()))){
+		for(Vec2 v: GraphUtils.a_star_search(n0, n3, graph,((a,b) -> graph.getGetValue(a, b) == null ? 0:graph.getGetValue(a, b).intValue()))){
 			System.out.println(v.toString());
 		}
 		

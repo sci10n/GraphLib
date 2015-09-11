@@ -8,7 +8,7 @@ import java.util.LinkedList;
 import java.util.PriorityQueue;
 import java.util.Stack;
 
-public class GraphSearch {
+public class GraphUtils {
 
 	/**
 	 * Both start and goal needs to be in the same AbstractGraph for the search to find a connection.

@@ -1,7 +1,7 @@
 package com.CMS.Si10n.Graphlib.runs;
 
 import com.CMS.Si10n.Graphlib.Graph;
-import com.CMS.Si10n.Graphlib.GraphSearch;
+import com.CMS.Si10n.Graphlib.GraphUtils;
 
 public class DirectedGraphTest {
 
@@ -37,15 +37,15 @@ public class DirectedGraphTest {
 		System.out.println(graph.toString());
 		
 		System.out.println("\nFloodFill from 2");
-		for(Integer i: GraphSearch.flood_fill(2, graph))
+		for(Integer i: GraphUtils.flood_fill(2, graph))
 			System.out.println(i);
 		
 		System.out.println("\nFloodFill from 1");
-		for(Integer i: GraphSearch.flood_fill(1, graph))
+		for(Integer i: GraphUtils.flood_fill(1, graph))
 			System.out.println(i);
 		
 		System.out.println("\nBFS from 1 to 4");
-		for(Integer i: GraphSearch.breadth_first_search(1, 4, graph))
+		for(Integer i: GraphUtils.breadth_first_search(1, 4, graph))
 			System.out.println(i);
 	}
 	
