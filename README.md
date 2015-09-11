@@ -49,3 +49,5 @@ graph.setEdgeCalculator((a,b) -> a+b);
 ```
 ![Example](https://github.com/sci10n/GraphLib/blob/master/web/Graph_ex2.png "Example Graph nr2")
 ***
+## Javadocs
+Javadocs can be found in the [__repository__](https://github.com/sci10n/GraphLib/blob/master/GraphLib/doc/)
