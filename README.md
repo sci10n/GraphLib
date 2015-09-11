@@ -12,6 +12,7 @@ The library consists of three main parts
     * [A*](https://en.wikipedia.org/wiki/A*_search_algorithm)
     * [FloodFill](https://en.wikipedia.org/wiki/Flood_fill)
 * Testcases to be used for development testing and examples
+
 ***
 
 ## Examples
