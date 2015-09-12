@@ -48,4 +48,8 @@ graph.addEdge(2,10);
 graph.setEdgeCalculator((a,b) -> a+b);
 ```
 ![Example](https://github.com/sci10n/GraphLib/blob/master/web/Graph_ex2.png "Example Graph nr2")
+
+By setting `graph.setStaticCosts(false)` the `GraphEdgeOperator` specified will recalculate each time a edge is added. In the next update it will also change on deletion.
 ***
+## Javadocs
+Javadocs can be found in the [__repository__](https://github.com/sci10n/GraphLib/blob/master/GraphLib/doc/)
