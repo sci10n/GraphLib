@@ -60,10 +60,14 @@ Another problem I discovered was that since state comparisons are done with the 
 
 The example added in the repository is faulty and will require rework. The reason it's added at all is for completeness.
 
+
 What it should look like
+
 ![Example](https://github.com/sci10n/GraphLib/blob/master/web/8Puzzle_best.png "Example Graph nr2")
 
+
 What it actualy looks like
+
 ![Example](https://github.com/sci10n/GraphLib/blob/master/web/8Puzzle_error.png "Example Graph nr2")
 ***
 ## Javadocs
