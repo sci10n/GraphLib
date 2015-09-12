@@ -35,7 +35,6 @@ public class DuplicatedValueTest {
 		System.out.println(n1 + " " + n2 + " " + n3 + " " + n4);
 		System.out.println(Integer.toHexString(n1.hashCode()) + " " + Integer.toHexString(n2.hashCode()) + " " + Integer.toHexString(n3.hashCode()) + " " + Integer.toHexString(n4.hashCode()));
 		System.out.println(graph.getEdgeValue(n1, n1));
-		System.out.println(Integer.toHexString(graph.getNodeReference(1).hashCode()));
 	}
 	
 	public static void main(String[] args) {

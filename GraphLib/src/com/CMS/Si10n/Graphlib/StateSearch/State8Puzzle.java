@@ -3,7 +3,7 @@ package com.CMS.Si10n.Graphlib.StateSearch;
 import java.util.Arrays;
 import java.util.HashSet;
 
-public class State8Puzzle {
+public class State8Puzzle implements Comparable<State8Puzzle> {
 
 	public int[][] state = new int[3][3];
 	private State8Puzzle parent;
@@ -110,33 +110,34 @@ public class State8Puzzle {
 		return false;
 	}
 	
-	//Methods like this gives me an awkward feeling
+	
 	@Override
 	public String toString() {
 		String tmp = "";
 		for(int y = 0; y < state[0].length; y++){
 			for(int x = 0; x < state.length; x++)
-				tmp += state[x][y] + " ";
+				tmp += state[x][y] == 0? "  " : state[x][y] + " ";
 			tmp +="\n";
 		}
 		return tmp;
 	}
-
-	@Override
-	public int hashCode() {
-		int n[] = new int[]{checksum(),parent == null? 0 : parent.hashCode()};
-		return Arrays.hashCode(n);
-	}
+	
 	private int checksum() {
 		int [] t = new int[3];
 		for(int i = 0; i < state.length; i++)
 			t[i] = Arrays.hashCode(state[i]);
 		return Arrays.hashCode(t);
 	}
+	
 	@Override
 	public boolean equals(Object obj) {
 		if(obj instanceof State8Puzzle)
 			return ((State8Puzzle) obj).checksum() == checksum();
 		return super.equals(obj);
+	}
+
+	@Override
+	public int compareTo(State8Puzzle o) {
+		return o.dist(this);
 	}
 }

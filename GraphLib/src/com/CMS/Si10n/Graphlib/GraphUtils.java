@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.PriorityQueue;
 import java.util.Stack;
+import java.util.Vector;
 
 /**
  * 
@@ -110,7 +111,7 @@ public class GraphUtils {
 	 */
 	public static <T, E> Collection<T> a_star_search(T start, T goal, AbstractGraph<T,E> graph,Comparator<T> comp){
 		PriorityQueue<T> frontier = new PriorityQueue<T>(comp);
-		HashSet<T> explored = new HashSet<T>();
+		Vector<T> explored = new Vector<T>();
 		HashMap<T,T> backtrack = new HashMap<T,T>();
 		frontier.add(start);
 		backtrack.put(start, null);

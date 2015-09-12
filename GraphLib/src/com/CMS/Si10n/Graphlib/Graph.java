@@ -10,7 +10,7 @@ import java.util.HashSet;
  * @param <T>
  * @param <E>
  */
-public class Graph<T,E> implements AbstractGraph<T,E>{
+public class Graph<T,E> extends AbstractGraph<T,E>{
 	
 	private HashMap<T,HashMap<T,E>> edges;
 	private HashSet<T> nodes;
@@ -20,9 +20,7 @@ public class Graph<T,E> implements AbstractGraph<T,E>{
 		edges = new HashMap<T, HashMap<T,E>>();
 		nodes = new HashSet<T>();
 	}
-	public Graph(AbstractGraph<T,E> graph){
-		nodes = new HashSet<T>(graph.getNodes());
-	}
+
 	@Override
 	public boolean hasAdjacent(T t1, T t2) {
 		if(edges.get(t1) == null)
@@ -64,19 +62,10 @@ public class Graph<T,E> implements AbstractGraph<T,E>{
 	}
 
 	@Override
-	public void delete(T t1, T t2) {
+	public void deleteEdge(T t1, T t2) {
 		edges.get(t1).remove(t2);
 		if(!isStaticCosts())
 			recalculate();
-	}
-	
-	@Override
-	public <S> T getNodeReference(S s){
-		for(T t2: nodes){
-			if(t2.equals(s))
-				return t2;
-		}
-		return null;
 	}
 	
 	@Override
@@ -119,8 +108,7 @@ public class Graph<T,E> implements AbstractGraph<T,E>{
 		return super.toString() + "\n" + nodes.toString() + "\n" + edges.toString();
 	}
 
-	@Override
-	public Collection<T> getNodes() {
+	public HashSet<T> getNodes() {
 		return nodes;
 	}
 }
