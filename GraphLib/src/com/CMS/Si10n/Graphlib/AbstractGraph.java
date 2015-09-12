@@ -20,12 +20,6 @@ public interface AbstractGraph<T, E> {
 	public boolean hasAdjacent(T t1, T t2);
 	
 	/**
-	 * Not used in any examples but useful in cases like TopSort
-	 * @param t
-	 * @return
-	 */
-	public boolean hasIncommingEdges(T t);
-	/**
 	 * Returns all AbstractNode:s with a edge between them and t
 	 * @param t
 	 * @return

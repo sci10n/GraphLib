@@ -106,15 +106,6 @@ public class Graph<T,E> implements AbstractGraph<T,E>{
 		}
 	}
 	
-	@Override
-	public boolean hasIncommingEdges(T t){
-		for(T n: edges.keySet()){
-			if(edges.get(n).containsKey(t))
-				return true;
-		}
-		return false;
-	}
-	
 	public boolean isStaticCosts() {
 		return staticCosts;
 	}

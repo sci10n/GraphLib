@@ -119,6 +119,7 @@ public class GraphUtils {
 			T c = frontier.poll();
 			explored.add(c);
 			if(c.equals(goal)){
+				goal = c;
 				break;
 			}
 			for(T n: graph.getNeighbors(c)){
@@ -138,6 +139,7 @@ public class GraphUtils {
 			path.push(c);
 			c = backtrack.get(c);
 		}
+		
 		return path;
 	}
 }
