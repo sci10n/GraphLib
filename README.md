@@ -59,6 +59,16 @@ An example would be if you want to use the `GraphUtils`for searching in a state 
 Another problem I discovered was that since state comparisons are done with the `.equals` and `.hashCode`, both needs to be overidden if new states are created on the fly.
 
 The example added in the repository is faulty and will require rework. The reason it's added at all is for completeness.
+
+
+What it should look like
+
+![Example](https://github.com/sci10n/GraphLib/blob/master/web/8Puzzle_best.png "Example Graph nr2")
+
+
+What it actualy looks like
+
+![Example](https://github.com/sci10n/GraphLib/blob/master/web/8Puzzle_error.png "Example Graph nr2")
 ***
 ## Javadocs
 Javadocs can be found in the [__repository__](https://github.com/sci10n/GraphLib/blob/master/GraphLib/doc/)
