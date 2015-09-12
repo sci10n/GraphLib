@@ -1,10 +1,12 @@
 package com.CMS.Si10n.Graphlib.StateSearch;
 
+import java.util.Arrays;
 import java.util.HashSet;
 
 public class State8Puzzle {
 
 	public int[][] state = new int[3][3];
+	private State8Puzzle parent;
 	private int emptyX,emptyY;
 	public State8Puzzle(State8Puzzle parent){
 		for(int x = 0; x < state.length; x++)
@@ -12,6 +14,7 @@ public class State8Puzzle {
 				state[x][y] = parent.state[x][y];
 		emptyX = parent.emptyX;
 		emptyY = parent.emptyY;
+		this.parent = parent;
 	}
 	
 	public HashSet<Action> actions(){
@@ -118,17 +121,22 @@ public class State8Puzzle {
 		}
 		return tmp;
 	}
-	
+
+	@Override
+	public int hashCode() {
+		int n[] = new int[]{checksum(),parent == null? 0 : parent.hashCode()};
+		return Arrays.hashCode(n);
+	}
+	private int checksum() {
+		int [] t = new int[3];
+		for(int i = 0; i < state.length; i++)
+			t[i] = Arrays.hashCode(state[i]);
+		return Arrays.hashCode(t);
+	}
 	@Override
 	public boolean equals(Object obj) {
-	if(obj == null)
-		return false;
-	if(obj == this)
-		return true;
-	if(obj instanceof State8Puzzle){
-		State8Puzzle o = (State8Puzzle) obj;
-		return o.dist(this) == 0;
-	}
+		if(obj instanceof State8Puzzle)
+			return ((State8Puzzle) obj).checksum() == checksum();
 		return super.equals(obj);
 	}
 }

@@ -133,10 +133,10 @@ public class GraphUtils {
 	}
 	
 	private static <T, E> Collection<T>  reconstruct(T start, HashMap<T,T> backtrack, AbstractGraph<T,E> graph){
-		Stack<T> path = new Stack<T>();
+		LinkedList<T> path = new LinkedList<T>();
 		T c = start;
 		while(c != null){
-			path.push(c);
+			path.addFirst(c);
 			c = backtrack.get(c);
 		}
 		
