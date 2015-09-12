@@ -50,6 +50,15 @@ graph.setEdgeCalculator((a,b) -> a+b);
 ![Example](https://github.com/sci10n/GraphLib/blob/master/web/Graph_ex2.png "Example Graph nr2")
 
 By setting `graph.setStaticCosts(false)` the `GraphEdgeOperator` specified will recalculate each time a edge is added. In the next update it will also change on deletion.
+
+***
+### Issues
+The `AbstractGraph` interface has way to many methods in it. Most of the stuff could probably be moved to suclasses/interfaces.
+An example would be if you want to use the `GraphUtils`for searching in a state graph like [n-puzzle](https://en.wikipedia.org/wiki/15_puzzle) solving, you would need to implement everything in `AbstractGraph` even thought `A*` only needs a `Comparator<State>` and the `.getNeighbors()`. 
+
+Another problem I discovered was that since state comparisons are done with the `.equals` and `.hashCode`, both needs to be overidden if new states are created on the fly.
+
+The example added in the repository is faulty and will require rework. The reason it's added at all is for completeness.
 ***
 ## Javadocs
 Javadocs can be found in the [__repository__](https://github.com/sci10n/GraphLib/blob/master/GraphLib/doc/)
