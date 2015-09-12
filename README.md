@@ -54,21 +54,16 @@ By setting `graph.setStaticCosts(false)` the `GraphEdgeOperator` specified will 
 ***
 ### Issues
 The `AbstractGraph` interface has way to many methods in it. Most of the stuff could probably be moved to suclasses/interfaces.
-An example would be if you want to use the `GraphUtils`for searching in a state graph like [n-puzzle](https://en.wikipedia.org/wiki/15_puzzle) solving, you would need to implement everything in `AbstractGraph` even thought `A*` only needs a `Comparator<State>` and the `.getNeighbors()`. 
+An example would be if you want to use the `GraphUtils`for searching in a state graph like [__n-puzzle__](https://en.wikipedia.org/wiki/15_puzzle) solving, you would need to implement everything in `AbstractGraph` even thought [A*](https://en.wikipedia.org/wiki/A*_search_algorithm) only needs a `Comparator<State>` and the `.getNeighbors()`. 
 
 Another problem I discovered was that since state comparisons are done with the `.equals` and `.hashCode`, both needs to be overidden if new states are created on the fly.
 
-The example added in the repository is faulty and will require rework. The reason it's added at all is for completeness.
+The added example is not the best and highlights some bad design decitsion but principle works. The point was that you didn't need to rewrite the search algorithm and that principle stands even though everything else needed to be modified.
 
-
-What it should look like
+What the example looks like using [_Hamming Distance_](https://en.wikipedia.org/wiki/Hamming_distance).
 
 ![Example](https://github.com/sci10n/GraphLib/blob/master/web/8Puzzle_best.png "Example Graph nr2")
 
-
-What it actualy looks like
-
-![Example](https://github.com/sci10n/GraphLib/blob/master/web/8Puzzle_error.png "Example Graph nr2")
 ***
 ## Javadocs
 Javadocs can be found in the [__repository__](https://github.com/sci10n/GraphLib/blob/master/GraphLib/doc/)
