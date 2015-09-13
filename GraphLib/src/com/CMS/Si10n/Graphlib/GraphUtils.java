@@ -17,7 +17,28 @@ import java.util.Vector;
  */
 
 public class GraphUtils {
-
+	
+	/**
+	 * Super dirty way of cloning a Graph
+	 * @param graph
+	 * @return null if fail, otherwise the new copy
+	 */
+	public static <T,E,S extends AbstractGraph<T,E>> S copy_graph(S graph){
+		try {
+			S ret = (S) graph.getClass().newInstance();
+			graph.forEachNode(((a)->ret.addNode(a)));
+			graph.forEachEdge((a,b)->{
+				ret.addEdge(a, b, graph.getEdgeValue(a, b));
+				return graph.getEdgeValue(a, b);
+			});
+			return ret;
+		} catch (InstantiationException | IllegalAccessException e) {
+			e.printStackTrace();
+		}
+		return null;
+		
+	}
+	
 	/**
 	 * If goal can't be found it will return null.
 	 * @param start

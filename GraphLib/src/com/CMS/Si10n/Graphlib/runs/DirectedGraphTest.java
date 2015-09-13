@@ -27,11 +27,11 @@ public class DirectedGraphTest {
 		graph.addEdge(3,4);
 		
 		System.out.println(graph.toString());
-		graph.setEdgeCalculator((a,b) -> a+b);
+		graph.forEachEdge((a,b) -> a+b);
 		
 		System.out.println("\n");
 		System.out.println(graph.toString());
-		graph.setEdgeCalculator((a,b) -> a);
+		graph.forEachEdge((a,b) -> a);
 		
 		System.out.println("\n");
 		System.out.println(graph.toString());

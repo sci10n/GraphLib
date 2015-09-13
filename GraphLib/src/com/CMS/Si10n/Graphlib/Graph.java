@@ -14,8 +14,7 @@ public class Graph<T,E> extends AbstractGraph<T,E>{
 	
 	private HashMap<T,HashMap<T,E>> edges;
 	private HashSet<T> nodes;
-	private boolean staticCosts = true;
-	private GraphEdgeOperator<T, E> edgeCost;
+	
 	public Graph(){
 		edges = new HashMap<T, HashMap<T,E>>();
 		nodes = new HashSet<T>();
@@ -37,6 +36,10 @@ public class Graph<T,E> extends AbstractGraph<T,E>{
 	}
 
 	@Override
+	public boolean containsNode(T t) {
+		return nodes.contains(t);
+	}
+	@Override
 	public T addNode(T t) {
 		if(!nodes.contains(t)){
 			nodes.add(t);
@@ -50,22 +53,45 @@ public class Graph<T,E> extends AbstractGraph<T,E>{
 			nodes.remove(t);
 		}
 	}
-
+	
+	@Override
+	public boolean containsEdge(T t1, T t2) {
+		return edges.containsKey(t1) && edges.get(t1).containsKey(t2);
+	}
+	
+	@Override
+	public void forEachNode(GraphNodeOperator<T> op) {
+		for(T n1: nodes){
+			setNodeValue(op.process(n1));
+		}
+	}
+	
+	@Override
+	public void forEachEdge(GraphEdgeOperator<T, E> op) {
+		for(T n1: edges.keySet() )
+			for(T n2: edges.get(n1).keySet()){
+				setEdgeValue(n1, n2, op.process(n1,n2));
+			}
+	}
+	@Override
+	public void addEdge(T t1, T t2, E e) {
+		if(!edges.containsKey(t1))
+			edges.put(t1, new HashMap<T, E>());
+		if(!edges.get(t1).containsKey(t2))
+			edges.get(t1).put(t2,e);
+	}
+	
 	@Override
 	public void addEdge(T t1, T t2) {
 		if(!edges.containsKey(t1))
 			edges.put(t1, new HashMap<T, E>());
 		if(!edges.get(t1).containsKey(t2))
 			edges.get(t1).put(t2,null);
-		if(!isStaticCosts())
-			recalculate();
 	}
 
 	@Override
 	public void deleteEdge(T t1, T t2) {
 		edges.get(t1).remove(t2);
-		if(!isStaticCosts())
-			recalculate();
 	}
 	
 	@Override
@@ -81,34 +107,9 @@ public class Graph<T,E> extends AbstractGraph<T,E>{
 		edges.get(t1).put(t2, e);
 	}
 
-	@Override
-	public void setEdgeCalculator(GraphEdgeOperator<T, E> op) {
-		edgeCost = op;
-		recalculate();
-	}
-	private void recalculate(){
-		if(edgeCost != null)
-		for(T n1: edges.keySet()){
-			for(T n2:edges.get(n1).keySet()){
-				setEdgeValue(n1, n2, edgeCost.process(n1, n2));
-			}
-		}
-	}
-	
-	public boolean isStaticCosts() {
-		return staticCosts;
-	}
-
-	public void setStaticCosts(boolean staticCosts) {
-		this.staticCosts = staticCosts;
-	}
 
 	@Override
 	public String toString() {
 		return super.toString() + "\n" + nodes.toString() + "\n" + edges.toString();
-	}
-
-	public HashSet<T> getNodes() {
-		return nodes;
 	}
 }

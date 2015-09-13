@@ -60,7 +60,7 @@ public class HeuristicGraphTest {
 		System.out.println(graph.toString());
 		
 		//Euclidean distance to neighbors
-		graph.setEdgeCalculator((a,b) -> Math.sqrt(Math.pow(Math.abs(a.t1 - b.t1),2) + (Math.pow(Math.abs(a.t2 - b.t2),2))));
+		graph.forEachEdge((a,b) -> Math.sqrt(Math.pow(Math.abs(a.t1 - b.t1),2) + (Math.pow(Math.abs(a.t2 - b.t2),2))));
 		
 		System.out.println();
 		System.out.println(graph.toString());
@@ -71,7 +71,7 @@ public class HeuristicGraphTest {
 		}
 		
 		//Euclidean distance to n3
-		graph.setEdgeCalculator((a,b) -> Math.sqrt(Math.pow(Math.abs(a.t1 - n3.t1),2) + (Math.pow(Math.abs(a.t2 - n3.t2),2))));
+		graph.forEachEdge((a,b) -> Math.sqrt(Math.pow(Math.abs(a.t1 - n3.t1),2) + (Math.pow(Math.abs(a.t2 - n3.t2),2))));
 		//Notice how the distance between n0 and n1 is the distance from n0 to n3 regardless of no edge between n0 and n3
 		System.out.println();
 		System.out.println(n0.toString() + " -> "+ n1.toString() + " = " + graph.getEdgeValue(n0, n1));

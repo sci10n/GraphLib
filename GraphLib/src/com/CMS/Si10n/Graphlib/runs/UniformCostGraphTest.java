@@ -16,7 +16,7 @@ public class UniformCostGraphTest {
 		graph.addEdge(2,10);
 		
 		//Instead of setting all edges manually
-		graph.setEdgeCalculator((a,b) -> 1);
+		graph.forEachEdge((a,b) -> 1);
 		
 		System.out.println(graph.toString());
 		

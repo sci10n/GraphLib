@@ -13,9 +13,7 @@ public class GridToGraphTest {
 			for(int y = 0; y < grid[0].length; y++)
 				grid[y][x] = x + y*grid.length;
 		
-		//Updates all edges whenever new ones are added
-		graph.setStaticCosts(false);
-		graph.setEdgeCalculator((a,b) -> 0);
+
 		
 		//adding nodes
 		for(int x = 0; x < grid.length; x++)
@@ -31,7 +29,9 @@ public class GridToGraphTest {
 				if(y != grid[0].length-1)graph.addEdge(grid[x][y], grid[x][y+1]);
 				
 			}
-			System.out.println(graph.toString());
+		graph.forEachEdge((a,b) -> 0);
+		
+		System.out.println(graph.toString());
 	}
 	
 	public static void main(String[] args) {
