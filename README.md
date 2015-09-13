@@ -1,7 +1,7 @@
 # GraphLib
 A Java Library for the Graph data structure
 #### Work in progress
-This is a small library i'm working on for personal use.
+This is a small library I'm working on for personal use.
 ***
 ## Index
 * [__Content__](https://github.com/sci10n/GraphLib#content)
