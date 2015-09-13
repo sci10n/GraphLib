@@ -64,7 +64,7 @@ An example would be if you want to use the `GraphUtils`for searching in a state 
 
 Another problem I discovered was that since state comparisons are done with the `.equals` and `.hashCode`, both needs to be overidden if new states are created on the fly.
 
-The added example is not the best and highlights some bad design decisions but principle works. The point was that you didn't need to rewrite the search algorithm and that principle stands even though the solutions doesn't feel completely natural.
+The added example is not the best and highlights some bad design decisions but principle works. The point was that you didn't need to rewrite the search algorithm and that principle stands even though the solutions don't feel completely natural.
 
 What the example looks like using [_Hamming Distance_](https://en.wikipedia.org/wiki/Hamming_distance).
 
