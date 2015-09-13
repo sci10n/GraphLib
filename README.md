@@ -3,6 +3,12 @@ A Java Library for the Graph data structure
 #### Work in progress
 This is a small library i'm working on for personal use.
 ***
+## Index
+* [__Content__](https://github.com/sci10n/GraphLib#content)
+* [__Examples__](https://github.com/sci10n/GraphLib#examples)
+* [__Issues__](https://github.com/sci10n/GraphLib#issues)
+
+***
 ## Content
 The library consists of three main parts
 * Fully templated AbstractGraph interfaces with one concrete [Directed Graph](https://en.wikipedia.org/wiki/Directed_graph)
@@ -58,7 +64,7 @@ An example would be if you want to use the `GraphUtils`for searching in a state 
 
 Another problem I discovered was that since state comparisons are done with the `.equals` and `.hashCode`, both needs to be overidden if new states are created on the fly.
 
-The added example is not the best and highlights some bad design decitsion but principle works. The point was that you didn't need to rewrite the search algorithm and that principle stands even though everything else needed to be modified.
+The added example is not the best and highlights some bad design decitsion but principle works. The point was that you didn't need to rewrite the search algorithm and that principle stands even though the solutions doesn't feel completely natural.
 
 What the example looks like using [_Hamming Distance_](https://en.wikipedia.org/wiki/Hamming_distance).
 
