@@ -3,27 +3,20 @@ package com.CMS.Si10n.Graphlib.StateSearch;
 import java.util.Arrays;
 import java.util.HashSet;
 
-public class State8Puzzle implements Comparable<State8Puzzle> {
+public class State8Puzzle {
 
 	public int[][] state = new int[3][3];
-	private State8Puzzle parent;
 	private int emptyX,emptyY;
+	private int checksum;
+	public int cost;
 	public State8Puzzle(State8Puzzle parent){
 		for(int x = 0; x < state.length; x++)
 			for(int y =0 ; y < state[0].length;y++)
 				state[x][y] = parent.state[x][y];
 		emptyX = parent.emptyX;
 		emptyY = parent.emptyY;
-		this.parent = parent;
-	}
-	
-	public HashSet<Action> actions(){
-		HashSet<Action> actions = new HashSet<Action>();
-		for(Action a: Action.values()){
-			if(isValid(a))
-				actions.add(a);
-		}
-		return actions;
+		this.cost = parent.cost;
+		checksum = checksum();
 	}
 	
 	public State8Puzzle(int[] values){
@@ -34,6 +27,16 @@ public class State8Puzzle implements Comparable<State8Puzzle> {
 				emptyY = i / state.length;
 			}
 		}
+		checksum = checksum();
+	}
+	
+	public HashSet<Action> actions(){
+		HashSet<Action> actions = new HashSet<Action>();
+		for(Action a: Action.values()){
+			if(isValid(a))
+				actions.add(a);
+		}
+		return actions;
 	}
 	
 	public int dist(State8Puzzle s){
@@ -81,6 +84,7 @@ public class State8Puzzle implements Comparable<State8Puzzle> {
 				break;
 			}
 		}
+			checksum = checksum();
 		return this;
 		}
 		return null;
@@ -130,14 +134,14 @@ public class State8Puzzle implements Comparable<State8Puzzle> {
 	}
 	
 	@Override
+	public int hashCode() {
+		return checksum;
+	}
+	@Override
 	public boolean equals(Object obj) {
 		if(obj instanceof State8Puzzle)
-			return ((State8Puzzle) obj).checksum() == checksum();
-		return super.equals(obj);
+			return ((State8Puzzle) obj).checksum == checksum;
+		return false;
 	}
-
-	@Override
-	public int compareTo(State8Puzzle o) {
-		return o.dist(this);
-	}
+	
 }

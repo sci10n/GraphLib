@@ -44,7 +44,7 @@ public class GraphUtils {
 				}
 			}
 		}
-		return reconstruct(goal, backtrack,graph);
+		return reconstruct(goal, backtrack);
 	}
 	/**
 	 * If goal can't be found it will return null.
@@ -72,7 +72,7 @@ public class GraphUtils {
 				}
 			}
 		}
-		return reconstruct(goal, backtrack,graph);
+		return reconstruct(goal, backtrack);
 	}
 	
 	/**
@@ -109,9 +109,9 @@ public class GraphUtils {
 	 * @param comp Comparator used to order the nodes in the frontier. is a parameter because of dynamics
 	 * @return
 	 */
-	public static <T, E> Collection<T> a_star_search(T start, T goal, AbstractGraph<T,E> graph,Comparator<T> comp){
+	public static <T, E> Collection<T> a_star_search(T start, T goal, IGraph<T,E> graph,Comparator<T> comp){
 		PriorityQueue<T> frontier = new PriorityQueue<T>(comp);
-		Vector<T> explored = new Vector<T>();
+		HashSet<T> explored = new HashSet<T>();
 		HashMap<T,T> backtrack = new HashMap<T,T>();
 		frontier.add(start);
 		backtrack.put(start, null);
@@ -119,8 +119,9 @@ public class GraphUtils {
 		while(!frontier.isEmpty()){
 			T c = frontier.poll();
 			explored.add(c);
+			
 			if(c.equals(goal)){
-				goal = c;
+
 				break;
 			}
 			for(T n: graph.getNeighbors(c)){
@@ -130,10 +131,10 @@ public class GraphUtils {
 				}
 			}
 		}
-		return reconstruct(goal, backtrack,graph);
+		return reconstruct(goal, backtrack);
 	}
 	
-	private static <T, E> Collection<T>  reconstruct(T start, HashMap<T,T> backtrack, AbstractGraph<T,E> graph){
+	private static <T, E> Collection<T>  reconstruct(T start, HashMap<T,T> backtrack){
 		LinkedList<T> path = new LinkedList<T>();
 		T c = start;
 		while(c != null){
