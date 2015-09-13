@@ -1,7 +1,13 @@
 # GraphLib
 A Java Library for the Graph data structure
 #### Work in progress
-This is a small library i'm working on for personal use.
+This is a small library I'm working on for personal use.
+***
+## Index
+* [__Content__](https://github.com/sci10n/GraphLib#content)
+* [__Examples__](https://github.com/sci10n/GraphLib#examples)
+* [__Issues__](https://github.com/sci10n/GraphLib#issues)
+
 ***
 ## Content
 The library consists of three main parts
@@ -53,12 +59,12 @@ By setting `graph.setStaticCosts(false)` the `GraphEdgeOperator` specified will 
 
 ***
 ### Issues
-The `AbstractGraph` interface has way to many methods in it. Most of the stuff could probably be moved to suclasses/interfaces.
+The `AbstractGraph` interface has way too many methods in it. Most of the stuff could probably be moved to subclasses/interfaces.
 An example would be if you want to use the `GraphUtils`for searching in a state graph like [__n-puzzle__](https://en.wikipedia.org/wiki/15_puzzle) solving, you would need to implement everything in `AbstractGraph` even thought [A*](https://en.wikipedia.org/wiki/A*_search_algorithm) only needs a `Comparator<State>` and the `.getNeighbors()`. 
 
 Another problem I discovered was that since state comparisons are done with the `.equals` and `.hashCode`, both needs to be overidden if new states are created on the fly.
 
-The added example is not the best and highlights some bad design decitsion but principle works. The point was that you didn't need to rewrite the search algorithm and that principle stands even though everything else needed to be modified.
+The added example is not the best and highlights some bad design decisions but principle works. The point was that you didn't need to rewrite the search algorithm and that principle stands even though the solutions don't feel completely natural.
 
 What the example looks like using [_Hamming Distance_](https://en.wikipedia.org/wiki/Hamming_distance).
 
