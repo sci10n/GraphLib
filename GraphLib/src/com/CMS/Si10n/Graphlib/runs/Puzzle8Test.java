@@ -9,13 +9,24 @@ public class Puzzle8Test {
 	public void init(){
 
 	
-		State8Puzzle startState = new State8Puzzle(new int[]{1,2,5,3,4,0,6,7,8});
-		State8Puzzle goalState  = new State8Puzzle(new int[]{0,1,2,3,4,5,6,7,8});
+		State8Puzzle startState = new State8Puzzle(new int[]{0,1,2,3,4,5,6,7,8});
+		State8Puzzle goalState  = new State8Puzzle(new int[]{1,2,3,4,5,6,7,8,0});
 		Puzzle8 puzzle = new Puzzle8(goalState);
-		
-		for(State8Puzzle p : GraphUtils.a_star_search(startState, goalState, puzzle, (a,b) -> (a.cost + a.dist(goalState) - b.cost + b.dist(goalState)))){
+	
+		for(State8Puzzle p : GraphUtils.a_star_search(startState, goalState, puzzle, (a,b) ->
+		{
+			if(a.equals(b))
+				return 0;
+			int c1 = a.cost + a.dist(goalState);
+			int c2 = b.cost + b.dist(goalState);
+			//ystem.out.println("\n"+a.toString() + "\n" + b.toString() + " "+ c +"\n\n");
+			return c1 == c2 ? 0 : (c1 < c2 ? -1 : 1);
+		})){
 			System.out.println(p.toString());
 		}
+		//for(State8Puzzle p :GraphUtils.breadth_first_search(startState, goalState, puzzle)){
+		//	System.out.println(p.toString());
+		//}
 	}
 	
 	public static void main(String[] args) {
