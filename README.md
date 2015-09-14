@@ -51,11 +51,9 @@ graph.addEdge(1,2);
 graph.addEdge(1,3);
 graph.addEdge(3,2);
 graph.addEdge(2,10);
-graph.setEdgeCalculator((a,b) -> a+b);
+graph.forEachEdge((a,b) -> a+b);
 ```
 ![Example](https://github.com/sci10n/GraphLib/blob/master/web/Graph_ex2.png "Example Graph nr2")
-
-By setting `graph.setStaticCosts(false)` the `GraphEdgeOperator` specified will recalculate each time a edge is added. In the next update it will also change on deletion.
 
 ***
 ### Issues
