@@ -7,7 +7,6 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.PriorityQueue;
 import java.util.Stack;
-import java.util.TreeSet;
 import java.util.Vector;
 
 /**
@@ -133,7 +132,7 @@ public class GraphUtils {
 	 */
 	public static <T, E> Collection<T> a_star_search(T start, T goal, IGraph<T,E> graph,Comparator<T> comp){
 		PriorityQueue<T> frontier = new PriorityQueue<T>(comp);
-		LinkedList<T> explored = new LinkedList<T>();
+		HashSet<T> explored = new HashSet<T>();
 		HashMap<T,T> backtrack = new HashMap<T,T>();
 		frontier.add(start);
 		backtrack.put(start, null);
@@ -143,18 +142,16 @@ public class GraphUtils {
 			explored.add(c);
 			
 			if(c.equals(goal)){
-				System.out.println(c.toString() + "\n" + goal.toString());
-				goal = c;
+
 				break;
 			}
 			for(T n: graph.getNeighbors(c)){
-				if(!explored.contains(n) && !frontier.contains(n)){
+				if(!explored.contains(n)){
 					frontier.add(n);
 					backtrack.put(n, c);
 				}
 			}
 		}
-		System.out.println("HELLO2");
 		return reconstruct(goal, backtrack);
 	}
 	
