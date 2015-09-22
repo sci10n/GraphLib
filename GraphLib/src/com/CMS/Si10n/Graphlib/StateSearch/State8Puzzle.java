@@ -87,10 +87,12 @@ public class State8Puzzle {
 			checksum = checksum();
 		return this;
 		}
+		checksum = checksum();
 		return null;
 	}
 
 	public boolean isValid(Action a){
+		checksum = checksum();
 		switch(a){
 		case MOVE_EAST:
 			if(emptyX > 0)
@@ -127,20 +129,18 @@ public class State8Puzzle {
 	}
 	
 	private int checksum() {
-		int [] t = new int[3];
-		for(int i = 0; i < state.length; i++)
-			t[i] = Arrays.hashCode(state[i]);
-		return Arrays.hashCode(t);
+		return Arrays.deepHashCode(state);
 	}
 	
 	@Override
 	public int hashCode() {
+		checksum = checksum();
 		return checksum;
 	}
 	@Override
 	public boolean equals(Object obj) {
 		if(obj instanceof State8Puzzle)
-			return ((State8Puzzle) obj).checksum == checksum;
+			return ((State8Puzzle) obj).checksum == checksum && ((State8Puzzle) obj).dist(this) == 0;
 		return false;
 	}
 	
