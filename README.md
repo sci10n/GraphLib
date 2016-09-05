@@ -1,7 +1,7 @@
 # GraphLib
 A Java Library for the Graph data structure
 #### Work in progress
-This is a small library I'm working on for personal use.
+
 ***
 ## Index
 * [__Content__](https://github.com/sci10n/GraphLib#content)
@@ -54,6 +54,26 @@ graph.addEdge(2,10);
 graph.forEachEdge((a,b) -> a+b);
 ```
 ![Example](https://github.com/sci10n/GraphLib/blob/master/web/Graph_ex2.png "Example Graph nr2")
+
+Many scenarios involves topologies with a fixed set of states but with dynamic edges. This can be represented using the `PropagationGraph` class.
+
+What sets the `PropagationGraph` apart from the standrad `Graph` datastructure is that `PropagationGraph` allow for event listeners on modification of the graph structure. Both for nodes and edges. 
+
+```java
+PropagationGraph<Integer, Integer> graph = new PropagationGraph<Integer, Integer>();
+graph.addNode(1);
+graph.addNode(2);
+graph.addNode(3);
+graph.addEdge(1, 2, 0);
+graph.addEdge(2, 3, 0);
+graph.addEdge(3, 1, 0);
+graph.addEdgeListener((a,b,e,c) -> 
+   {
+	    if (c == GraphChanges.CHANGE)
+	      System.out.println("The values of edges " + a +"->" + b + " changed to " + e);
+	});
+graph.setEdgeValue(1,2,10);
+``` 
 
 ***
 ### Issues
