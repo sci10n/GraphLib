@@ -39,59 +39,58 @@ public class PrintPropagationGraph {
     // Outputs the graph in .csv format with all edges given a timestep
     // ======================
     private static int timeline = 0;
+
     private static void graph2CSV(PropagationGraph<Node, Integer> graph) {
-	    for(Node n1: graph.getEdges().keySet()){
-	        for(Node n2: graph.getEdges().get(n1).keySet()){
-	    	System.out.println(n1.toString() + "," + n2.toString() + "," + graph.getEdges().get(n1).get(n2).toString() + "," + timeline);
-	    	} 
-	    }
+	for (Node n1 : graph.getEdges().keySet()) {
+	    if (graph.getEdges().get(n1) != null)
+		for (Node n2 : graph.getEdges().get(n1).keySet()) {
+		    System.out.println(n1.toString() + "," + n2.toString() + ","
+			    + graph.getEdges().get(n1).get(n2).toString() + "," + timeline);
+		}
+	}
     }
 
     public static void main(String[] args) {
 
+	System.out.println("source,target,weight,timestep");
 
-	    System.out.println("source,target,weight,timestep");
+	PropagationGraph<Node, Integer> graph = new PropagationGraph<Node, Integer>();
 
-	    PropagationGraph<Node, Integer> graph = new PropagationGraph<Node, Integer>();
+	// ======================
+	// Creating topology
+	// ======================
+	Node node1 = graph.addNode(new Node(0, 1));
+	Node node2 = graph.addNode(new Node(0, 2));
+	Node node3 = graph.addNode(new Node(0, 3));
+	graph.addEdge(node1, node2, 0);
+	graph.addEdge(node2, node3, 0);
 
-	    // ======================
-	    // Creating topology
-	    // ======================
-	    Node node1 = graph.addNode(new Node(0, 1));
-	    Node node2 = graph.addNode(new Node(0, 2));
-	    Node node3 = graph.addNode(new Node(0, 3));
-	    graph.addEdge(node1, node2, 0);
-	    graph.addEdge(node2, node3, 0);
-	    graph.addEdge(node3, node1, 0);
-	    
-	    // ======================
-	    // Adding graph listeners
-	    // ======================
-	    graph.addNodeListener((t1, c) -> {
-		    if (c == GraphChanges.CHANGE) {
-			for (Node n : graph.getNeighbors(t1)) {
-			    graph.setEdgeValue(t1, n, t1.value);
-			}
-		    }
+	// ======================
+	// Adding graph listeners
+	// ======================
+	graph.addNodeListener((t1, c) -> {
+	    if (c == GraphChanges.CHANGE) {
+		for (Node n : graph.getNeighbors(t1)) {
+		    graph.setEdgeValue(t1, n, t1.value);
+		}
+	    }
 
-	    });
-	    graph.addEdgeListener((t1, t2, e, c) -> {
-		timeline++;
-		if(e >= 10)
-		    return;
-		    graph2CSV(graph);
-		    if (c == GraphChanges.CHANGE) {
-			    t2.value = e +1;
-			    graph.setNodeValue(t2, t2);
-		    }
-
-	    });
-	    
-	    //Prints the first timestep
+	});
+	graph.addEdgeListener((t1, t2, e, c) -> {
+	    timeline++;
 	    graph2CSV(graph);
-	    //Start the graph propagation
-	    graph.setNodeValue(node1, new Node(1, node1.id));
-	    //Prints the resulting graph
-	    graph2CSV(graph);
+	    if (c == GraphChanges.CHANGE) {
+		t2.value = e + 1;
+		graph.setNodeValue(t2, t2);
+	    }
+
+	});
+
+	// Prints the first timestep
+	graph2CSV(graph);
+	// Start the graph propagation
+	graph.setNodeValue(node1, new Node(1, node1.id));
+	// Prints the resulting graph
+	graph2CSV(graph);
     }
 }

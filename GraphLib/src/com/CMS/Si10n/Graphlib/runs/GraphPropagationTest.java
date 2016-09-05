@@ -5,9 +5,9 @@ import com.CMS.Si10n.Graphlib.GraphPropagation.PropagationGraph;
 
 public class GraphPropagationTest {
 
-    //=============================
-    //Wrapper class for Graph Nodes
-    //=============================
+    // =============================
+    // Wrapper class for Graph Nodes
+    // =============================
     private static class Node {
 	private int id;
 
@@ -17,9 +17,9 @@ public class GraphPropagationTest {
 
 	@Override
 	public String toString() {
-	    return ""+this.id;
+	    return "" + this.id;
 	}
-	
+
 	@Override
 	public int hashCode() {
 	    return Integer.hashCode(id);
@@ -29,10 +29,10 @@ public class GraphPropagationTest {
     public static void main(String[] args) {
 
 	PropagationGraph<Node, Integer> graph = new PropagationGraph<Node, Integer>();
-	
-	//======================
-	//Adding graph listeners
-	//======================
+
+	// ======================
+	// Adding graph listeners
+	// ======================
 	graph.addNodeListener((t1, c) -> {
 	    if (c == GraphChanges.CHANGE) {
 		for (Node n : graph.getNeighbors(t1)) {
@@ -43,14 +43,14 @@ public class GraphPropagationTest {
 	});
 	graph.addEdgeListener((t1, t2, e, c) -> {
 	    if (c == GraphChanges.CHANGE) {
-		    graph.setNodeValue(t2, new Node(t2.id));
+		graph.setNodeValue(t2, new Node(t2.id));
 	    }
-	    
+
 	});
-	
-	//======================
-	//Creating topology
-	//======================
+
+	// ======================
+	// Creating topology
+	// ======================
 	Node node1 = graph.addNode(new Node(1));
 	Node node2 = graph.addNode(new Node(2));
 	Node node3 = graph.addNode(new Node(3));
@@ -67,7 +67,7 @@ public class GraphPropagationTest {
 	graph.addEdge(node3, node6, 0);
 	graph.addEdge(node6, node7, 0);
 	graph.addEdge(node6, node8, 0);
-	
+
 	System.out.println(graph);
 	graph.setNodeValue(node3, new Node(node3.id));
 	System.out.println(graph);

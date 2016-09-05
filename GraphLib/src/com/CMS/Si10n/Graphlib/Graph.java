@@ -21,14 +21,15 @@ public class Graph<T, E> extends AbstractGraph<T, E> {
 	edges = new HashMap<T, HashMap<T, E>>();
 	nodes = new Vector<T>();
     }
-    
-    public Vector<T> getNodes(){
+
+    public Vector<T> getNodes() {
 	return nodes;
     }
-    
-    public HashMap<T, HashMap<T,E>> getEdges(){
+
+    public HashMap<T, HashMap<T, E>> getEdges() {
 	return edges;
     }
+
     @Override
     public boolean hasAdjacent(T t1, T t2) {
 	if (edges.get(t1) == null)
@@ -140,8 +141,7 @@ public class Graph<T, E> extends AbstractGraph<T, E> {
 	for (T t : nodes) {
 	    if (edges.get(t) != null)
 		for (T t2 : edges.get(t).keySet()) {
-		    out += "(" + t.toString() + "->" + t2.toString() + "="
-			    + edges.get(t).get(t2) + "),";
+		    out += "(" + t.toString() + "->" + t2.toString() + "=" + edges.get(t).get(t2) + "),";
 		}
 	    else
 		out += "(" + t.toString() + "),";

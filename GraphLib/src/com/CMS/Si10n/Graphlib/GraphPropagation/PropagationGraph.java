@@ -14,12 +14,26 @@ public class PropagationGraph<T, E> extends Graph<T, E> {
 	nodeListeners = new Vector<NodeChangeOperator<T>>();
     }
 
+    /**
+     * Adds class that will be activated when a node is either added, deleted,
+     * or modified using the {@link #setNodeValue(T t1, T t2)}
+     * 
+     * @param l
+     *            listener
+     */
     public void addNodeListener(NodeChangeOperator<T> l) {
 	if (!nodeListeners.contains(l)) {
 	    nodeListeners.add(l);
 	}
     }
 
+    /**
+     * Deletes class that is activated when a node is either added, deleted, or
+     * modified using the {@link #setNodeValue(T t1, T t2)}
+     * 
+     * @param l
+     *            listener
+     */
     public void removeNodeListener(NodeChangeOperator<T> l) {
 	if (nodeListeners.contains(l)) {
 	    nodeListeners.remove(l);
