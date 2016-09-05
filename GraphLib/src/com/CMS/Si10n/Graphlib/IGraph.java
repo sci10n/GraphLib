@@ -45,7 +45,7 @@ public interface IGraph<T, E> {
 	 * @param t Node
 	 * @param s Value
 	 */
-	public void setNodeValue(T t);
+	public void setNodeValue(T t, T s);
 	
 	public boolean containsEdge(T t1, T t2);
 	/**

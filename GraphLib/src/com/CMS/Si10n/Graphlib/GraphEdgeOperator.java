@@ -10,5 +10,5 @@ package com.CMS.Si10n.Graphlib;
  */
 @FunctionalInterface
 public interface GraphEdgeOperator<T, E> {
-	public E process(T t1, T t2);
+	public E process(T t1, T t2, E e);
 }

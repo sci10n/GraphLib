@@ -44,7 +44,7 @@ public class AbstractGraph<T,S> implements IGraph<T,S>{
 	}
 
 	@Override
-	public void setNodeValue(T t) {
+	public void setNodeValue(T t, T s) {
 		// TODO Auto-generated method stub
 	}
 

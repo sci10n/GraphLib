@@ -7,14 +7,6 @@ public class DirectedGraphTest {
 
 	public void init(){
 		Graph<Integer,Integer> graph = new Graph<Integer, Integer>();
-		/*
-		 * GraphRep:
-		 * with:
-		 * 		   (2)
-		 *(5)<-(1)<   >(4)
-		 * 	       (3)
-		 * 
-		 */
 		graph.addNode(1);
 		graph.addNode(2);
 		graph.addNode(3);
@@ -27,13 +19,11 @@ public class DirectedGraphTest {
 		graph.addEdge(3,4);
 		
 		System.out.println(graph.toString());
-		graph.forEachEdge((a,b) -> a+b);
-		
-		System.out.println("\n");
+		graph.forEachEdge((a,b,e) -> a+b);
+
 		System.out.println(graph.toString());
-		graph.forEachEdge((a,b) -> a);
+		graph.forEachEdge((a,b,e) -> a);
 		
-		System.out.println("\n");
 		System.out.println(graph.toString());
 		
 		System.out.println("\nFloodFill from 2");

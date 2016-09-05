@@ -12,15 +12,13 @@ public class DuplicatedValueTest {
 		@Override
 		public String toString() {
 			
-			return "("+value.toString()+")";
+			return value.toString();
 		}	
 		
 		@Override
 		public boolean equals(Object obj) {
-			if(obj.equals(value))
-				return true;
 			if(obj instanceof Node<?>){
-				return ((Node<?>) obj).value.equals(value);
+				return ((Node<?>) obj).value.equals(value) && super.equals(obj);
 			}
 			return super.equals(obj);
 		}
@@ -32,9 +30,8 @@ public class DuplicatedValueTest {
 		Node<Integer> n3 = graph.addNode(new Node<Integer>(2));
 		Node<Integer> n4 = graph.addNode(new Node<Integer>(3));
 		System.out.println(graph.toString());
-		System.out.println(n1 + " " + n2 + " " + n3 + " " + n4);
-		System.out.println(Integer.toHexString(n1.hashCode()) + " " + Integer.toHexString(n2.hashCode()) + " " + Integer.toHexString(n3.hashCode()) + " " + Integer.toHexString(n4.hashCode()));
-		System.out.println(graph.getEdgeValue(n1, n1));
+		System.out.println("Values in graph: " + n1 + " " + n2 + " " + n3 + " " + n4);
+		System.out.println("Nodes: "+ Integer.toHexString(n1.hashCode()) + " " + Integer.toHexString(n2.hashCode()) + " " + Integer.toHexString(n3.hashCode()) + " " + Integer.toHexString(n4.hashCode()));
 	}
 	
 	public static void main(String[] args) {

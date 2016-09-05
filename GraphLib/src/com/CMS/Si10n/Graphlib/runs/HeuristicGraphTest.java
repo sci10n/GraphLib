@@ -25,17 +25,6 @@ public class HeuristicGraphTest {
 	
 	public void init(){
 		Graph<Vec2,Double> graph = new Graph<Vec2, Double>();
-		/*
-		 * GraphRep:
-		 * n0 n1
-		 * n2 n3
-		 * 
-		 * with:
-		 * (0,0) -- (1,0)
-		 *   |        |
-		 * (0,1) -- (1,1)
-		 * 
-		 */
 		Vec2 n0 = new Vec2(0.0, 0.0);
 		Vec2 n1 = new Vec2(10.0, 0.0);
 		Vec2 n2 = new Vec2(0.0, 10.0);
@@ -59,8 +48,8 @@ public class HeuristicGraphTest {
 		
 		System.out.println(graph.toString());
 		
-		//Euclidean distance to neighbors
-		graph.forEachEdge((a,b) -> Math.sqrt(Math.pow(Math.abs(a.t1 - b.t1),2) + (Math.pow(Math.abs(a.t2 - b.t2),2))));
+		//Euclidean distance to neighbours
+		graph.forEachEdge((a,b,e) -> Math.sqrt(Math.pow(Math.abs(a.t1 - b.t1),2) + (Math.pow(Math.abs(a.t2 - b.t2),2))));
 		
 		System.out.println();
 		System.out.println(graph.toString());
@@ -71,7 +60,7 @@ public class HeuristicGraphTest {
 		}
 		
 		//Euclidean distance to n3
-		graph.forEachEdge((a,b) -> Math.sqrt(Math.pow(Math.abs(a.t1 - n3.t1),2) + (Math.pow(Math.abs(a.t2 - n3.t2),2))));
+		graph.forEachEdge((a,b,e) -> Math.sqrt(Math.pow(Math.abs(a.t1 - n3.t1),2) + (Math.pow(Math.abs(a.t2 - n3.t2),2))));
 		//Notice how the distance between n0 and n1 is the distance from n0 to n3 regardless of no edge between n0 and n3
 		System.out.println();
 		System.out.println(n0.toString() + " -> "+ n1.toString() + " = " + graph.getEdgeValue(n0, n1));

@@ -29,7 +29,7 @@ public class GridToGraphTest {
 				if(y != grid[0].length-1)graph.addEdge(grid[x][y], grid[x][y+1]);
 				
 			}
-		graph.forEachEdge((a,b) -> 0);
+		graph.forEachEdge((a,b,e) -> 0);
 		
 		System.out.println(graph.toString());
 	}

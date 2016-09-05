@@ -28,7 +28,7 @@ public class GraphUtils {
 		try {
 			S ret = (S) graph.getClass().newInstance();
 			graph.forEachNode(((a)->ret.addNode(a)));
-			graph.forEachEdge((a,b)->{
+			graph.forEachEdge((a,b,e)->{
 				ret.addEdge(a, b, graph.getEdgeValue(a, b));
 				return graph.getEdgeValue(a, b);
 			});
@@ -143,7 +143,6 @@ public class GraphUtils {
 			explored.add(c);
 			
 			if(c.equals(goal)){
-				System.out.println(c.toString() + "\n" + goal.toString());
 				goal = c;
 				break;
 			}
@@ -154,7 +153,6 @@ public class GraphUtils {
 				}
 			}
 		}
-		System.out.println("HELLO2");
 		return reconstruct(goal, backtrack);
 	}
 	
@@ -168,4 +166,5 @@ public class GraphUtils {
 		
 		return path;
 	}
+	
 }

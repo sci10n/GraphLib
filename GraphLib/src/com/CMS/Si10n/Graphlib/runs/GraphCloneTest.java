@@ -23,11 +23,11 @@ public class GraphCloneTest {
 		graph.addNode(n2);
 
 		Graph<Node, Integer> second = GraphUtils.copy_graph(graph);
-		System.out.println(second.toString()+"\n");
+		System.out.println(second.toString());
 		System.out.println(graph.toString());
+		System.out.println("Setting node 1 to 10");
 		n1.value = 10;
-		
-		System.out.println(second.toString()+"\n");
+		System.out.println(second.toString());
 		System.out.println(graph.toString());
 		
 	}

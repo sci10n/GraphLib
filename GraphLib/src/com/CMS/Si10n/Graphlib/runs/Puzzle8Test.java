@@ -19,14 +19,11 @@ public class Puzzle8Test {
 				return 0;
 			int c1 = a.cost + a.dist(goalState);
 			int c2 = b.cost + b.dist(goalState);
-			//ystem.out.println("\n"+a.toString() + "\n" + b.toString() + " "+ c +"\n\n");
 			return c1 == c2 ? 0 : (c1 < c2 ? -1 : 1);
 		})){
 			System.out.println(p.toString());
 		}
-		//for(State8Puzzle p :GraphUtils.breadth_first_search(startState, goalState, puzzle)){
-		//	System.out.println(p.toString());
-		//}
+
 	}
 	
 	public static void main(String[] args) {
