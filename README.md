@@ -55,6 +55,8 @@ graph.forEachEdge((a,b) -> a+b);
 ```
 ![Example](https://github.com/sci10n/GraphLib/blob/master/web/Graph_ex2.png "Example Graph nr2")
 
+####Proppagation Graph
+
 Many scenarios involves topologies with a fixed set of states but with dynamic edges. This can be represented using the `PropagationGraph` class.
 
 What sets the `PropagationGraph` apart from the standrad `Graph` datastructure is that `PropagationGraph` allow for event listeners on modification of the graph structure. Both for nodes and edges. 
@@ -74,6 +76,59 @@ graph.addEdgeListener((a,b,e,c) ->
 	});
 graph.setEdgeValue(1,2,10);
 ``` 
+
+####Finite State Machine
+The library contains a wrapper class around a Finite State Machine (FSM). The Finite State Machine uses a wrapper class (`FSM`) around the Graph data structure to limit the functionality of the Graph data structure to the constraints of a Finite State Machine.
+
+The following code exemplifies how the FSM wrapper class can be used. 
+```java
+FSM<Integer,Integer> fsm = new FSM<Integer,Integer>();
+fsm.addState(1);
+fsm.addState(2);
+fsm.addState(3);
+fsm.addTransition(1,2,1);
+fsm.addTransition(1,1,0);
+fsm.addTransition(2,3,1);
+fsm.addTransition(2,2,0);
+fsm.addTransition(3,1,1);
+fsm.addTransition(3,3,0);
+fsm.setCurrentState(1);
+```
+
+To run the FSM you only need to present an input-sequence and a loop.
+
+```java
+String sequence = "0110001111";
+for(int i = 0; i < sequence.length(); i++)
+	fsm.register(sequence.charAt(i) - '0');
+```
+
+The following image represents the FSM from the example above.
+
+![Example](https://github.com/sci10n/GraphLib/blob/master/web/FiniteStateMachine.png "Example of a Finite State Machine")
+
+####Markov chain
+
+The library also contains a wrapper class around the model of a Markov chain.
+
+Example of how the `MarkovChain` wrapper class can be used
+
+```java
+MarkovChain<String> mc = new MarkovChain<String>();
+mc.addState("Sunny");
+mc.addState("Rainy");
+mc.addTransition("Sunny","Rainy",0.1);
+mc.addTransition("Sunny","Sunny",0.9);
+mc.addTransition("Rainy","Sunny",0.5);
+mc.addTransition("Rainy","Rainy",0.5);
+mc.setCurrentState("Sunny");
+for(int i = 0; i <100; i++){
+    mc.register();
+   System.out.println(mc.getCurrentState());
+}
+```
+The example will produce the following Markov chain and print the result of 100 iterations of the model. 
+![Example](https://github.com/sci10n/GraphLib/blob/master/web/MarkovChain.png "Example of a Finite State Machine")
 
 ***
 ### Issues
