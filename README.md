@@ -4,11 +4,15 @@ A Java Library for the Graph data structure
 
 ***
 ## Index
+* [__Build state__](https://github.com/sci10n/GraphLib#content)
 * [__Content__](https://github.com/sci10n/GraphLib#content)
 * [__Examples__](https://github.com/sci10n/GraphLib#examples)
 * [__Issues__](https://github.com/sci10n/GraphLib#issues)
 
 ***
+## Build state
+[![Build Status](https://travis-ci.org/sci10n/GraphLib.svg?branch=master)](https://travis-ci.org/sci10n/GraphLib)
+
 ## Content
 The library consists of three main parts
 * Fully templated AbstractGraph interfaces with one concrete [Directed Graph](https://en.wikipedia.org/wiki/Directed_graph)
