@@ -7,7 +7,6 @@ A Java Library for the Graph data structure
 * [__Build state__](https://github.com/sci10n/GraphLib#content)
 * [__Content__](https://github.com/sci10n/GraphLib#content)
 * [__Examples__](https://github.com/sci10n/GraphLib#examples)
-* [__Issues__](https://github.com/sci10n/GraphLib#issues)
 
 ***
 ## Build state
@@ -134,14 +133,8 @@ for(int i = 0; i <100; i++){
 The example will produce the following Markov chain and print the result of 100 iterations of the model. 
 ![Example](https://github.com/sci10n/GraphLib/blob/master/web/MarkovChain.png "Example of a Finite State Machine")
 
-***
-### Issues
-The `AbstractGraph` interface has way too many methods in it. Most of the stuff could probably be moved to subclasses/interfaces.
+#### State-searching
 An example would be if you want to use the `GraphUtils`for searching in a state graph like [__n-puzzle__](https://en.wikipedia.org/wiki/15_puzzle) solving, you would need to implement everything in `AbstractGraph` even thought [A*](https://en.wikipedia.org/wiki/A*_search_algorithm) only needs a `Comparator<State>` and the `.getNeighbors()`. 
-
-Another problem I discovered was that since state comparisons are done with the `.equals` and `.hashCode`, both needs to be overidden if new states are created on the fly.
-
-The added example is not the best and highlights some bad design decisions but principle works. The point was that you didn't need to rewrite the search algorithm and that principle stands even though the solutions don't feel completely natural.
 
 What the example looks like using [_Hamming Distance_](https://en.wikipedia.org/wiki/Hamming_distance).
 
