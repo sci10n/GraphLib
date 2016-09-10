@@ -62,6 +62,11 @@ public class Graph<T, E> extends AbstractGraph<T, E> {
     public void deleteNode(T t) {
 	if (nodes.contains(t)) {
 	    nodes.remove(t);
+	    edges.remove(t);
+	    for(HashMap<T,E> e : edges.values()){
+		if(e.containsKey(t))
+		    e.remove(t);
+	    }
 	}
     }
 
@@ -97,6 +102,8 @@ public class Graph<T, E> extends AbstractGraph<T, E> {
 
     @Override
     public void addEdge(T t1, T t2) {
+	if(!nodes.contains(t1) || !nodes.contains(t2))
+	    return;
 	if (!edges.containsKey(t1))
 	    edges.put(t1, new HashMap<T, E>());
 	if (!edges.get(t1).containsKey(t2))
@@ -105,7 +112,8 @@ public class Graph<T, E> extends AbstractGraph<T, E> {
 
     @Override
     public void deleteEdge(T t1, T t2) {
-	edges.get(t1).remove(t2);
+	if(edges.get(t1) != null && edges.get(t1).containsKey(t2))
+	    edges.get(t1).remove(t2);
     }
 
     @Override
