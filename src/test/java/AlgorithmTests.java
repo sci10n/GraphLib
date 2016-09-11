@@ -69,7 +69,7 @@ public class AlgorithmTests extends TestCase {
 	    assertTrue(list.get(1) == 2);
 	    assertTrue(list.get(2) == 4);
 	}
-	// Test Kosaraju's algorithm
+	// Test Kosaraju's and Tarjan's algorithm
 	{
 	    Graph<Character,Integer> sccGraph = new Graph<Character,Integer>();
 	    sccGraph.addNode('a');
@@ -82,23 +82,17 @@ public class AlgorithmTests extends TestCase {
 	    sccGraph.addNode('h');
 	    
 	    sccGraph.addEdge('a', 'b');
-
 	    sccGraph.addEdge('b', 'f');
 	    sccGraph.addEdge('b', 'c');
 	    sccGraph.addEdge('b', 'e');
-	    
-	    sccGraph.addEdge('e', 'a');
-	    sccGraph.addEdge('e', 'f');
-	    
 	    sccGraph.addEdge('c', 'g');
 	    sccGraph.addEdge('c', 'd');
-	    
 	    sccGraph.addEdge('d', 'c');
 	    sccGraph.addEdge('d', 'h');
-	    
-	    sccGraph.addEdge('g', 'f');
+	    sccGraph.addEdge('e', 'a');
+	    sccGraph.addEdge('e', 'f');
 	    sccGraph.addEdge('f', 'g');
-	    
+	    sccGraph.addEdge('g', 'f');
 	    sccGraph.addEdge('h', 'g');
 	    sccGraph.addEdge('h', 'd');
 	    
@@ -114,11 +108,17 @@ public class AlgorithmTests extends TestCase {
 	    c3.add('f');
 	    c3.add('g');
 	    int success = 0;
-	    for(Collection<Character> scc : GraphUtils.kosarajus_algorithm(sccGraph)){
+	    for(Collection<Character> scc : GraphUtils.kosarajus(sccGraph)){
 		if(scc.containsAll(c1) || scc.containsAll(c2) || scc.containsAll(c3))
 		success++;
 	    }
-	    assertEquals(3, success);
+	    assertEquals("Kosarajus algorithm did not find the correct SCCs!",3, success);
+	    success = 0;
+	    for(Collection<Character> scc : GraphUtils.tarjan (sccGraph)){
+		if(scc.containsAll(c1) || scc.containsAll(c2) || scc.containsAll(c3))
+		success++;
+	    }
+	    assertEquals("Tarjans algorithm did not find the correct SCCs!",3, success);
 	}
     }
 }

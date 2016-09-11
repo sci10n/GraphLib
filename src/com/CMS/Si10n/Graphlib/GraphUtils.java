@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.PriorityQueue;
+import java.util.Stack;
 
 /**
  * 
@@ -192,7 +193,7 @@ public class GraphUtils {
 		assign(v,root, g, l);
 	   
     }
-    public static<T, E> Collection<? extends Collection<T>> kosarajus_algorithm(IGraph<T,E> graph){
+    public static<T, E> Collection<? extends Collection<T>> kosarajus(IGraph<T,E> graph){
 	HashMap<T,HashSet<T>> sccs = new HashMap<T,HashSet<T>>();
 	HashSet<T> L = new HashSet<T>();
 	HashSet<T> unvisited = new HashSet<T>();
@@ -206,6 +207,46 @@ public class GraphUtils {
 	    assign(t,t,graph,sccs);
 	}
 	return sccs.values();
+    }
+    
+    private static<T,E> void strongconnect(T v, IGraph<T,E> g, Stack<T> S, int index, HashMap<T,Integer> defined_index,HashMap<T,Integer> defined_lowlinked, Stack<HashSet<T>> sccs ){
+	defined_index.put(v, index);
+	defined_lowlinked.put(v, index);
+	index++;
+	S.push(v);
+	
+	for(T w : g.getNeighbors(v)){
+	    if(!defined_index.containsKey(w)){
+		strongconnect(w, g, S, index, defined_index, defined_lowlinked,sccs);
+		defined_lowlinked.put(v, Math.min(defined_lowlinked.get(v), defined_lowlinked.get(w)));
+	    }
+	    else if(S.contains(w)){
+		defined_lowlinked.put(v, Math.min(defined_lowlinked.get(v), defined_index.get(w)));
+	    }
+	}
+	if(defined_lowlinked.get(v) == defined_index.get(v)){
+	    sccs.push(new HashSet<T>());
+	    T w;
+	    do{
+		w = S.pop();
+		sccs.peek().add(w);
+	    }while(!w.equals(v));
+	}
+    }
+    public static<T,E> Collection<? extends Collection<T>> tarjan(IGraph<T,E> graph){
+	HashMap<T,Integer> defined_indexes = new HashMap<T,Integer>();
+	HashMap<T,Integer> defined_lowlinked = new HashMap<T,Integer>();
+	Stack<HashSet<T>> sccs = new Stack<HashSet<T>>();
+	Stack<T> S = new Stack<T>();
+	int index = 0;
+	for(T v : graph.getNodes()){
+	    if(!defined_indexes.containsKey(v)){
+		strongconnect(v,graph,S,index,defined_indexes,defined_lowlinked,sccs);
+	    }
+		
+	}
+	return sccs;
+	
     }
     private static <T, E> Collection<T> reconstruct(T start, HashMap<T, T> backtrack) {
 	LinkedList<T> path = new LinkedList<T>();
