@@ -69,4 +69,9 @@ public class AbstractGraph<T, S> implements IGraph<T, S> {
 
     }
 
+    @Override
+    public Collection<T> getNodes() {
+	return null;
+    }
+
 }

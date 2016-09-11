@@ -1,14 +1,12 @@
 package com.CMS.Si10n.Graphlib;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.PriorityQueue;
-import java.util.Stack;
-import java.util.TreeSet;
-import java.util.Vector;
 
 /**
  * 
@@ -161,7 +159,54 @@ public class GraphUtils {
 	}
 	return reconstruct(goal, backtrack);
     }
-
+    
+    private static <T, E> void visit(T t,IGraph<T,E> g, HashSet<T> u,HashSet<T> l){
+	if(u.contains(t)){
+	    u.remove(t);
+	    for(T t2: g.getNeighbors(t))
+		visit(t2,g,u,l);
+	    l.add(t);
+	}
+    }
+    
+    public static<T, E> Collection<T> getInNeighbours(T t, IGraph<T,E> graph){
+	ArrayList<T> in = new ArrayList<T>();
+	for(T t1: graph.getNodes()){
+	    if(graph.hasAdjacent(t1, t))
+		in.add(t1);
+	}
+	return in;
+    }
+    private static<T, E> void assign(T u, T root,IGraph<T,E> g, HashMap<T,HashSet<T>> l){
+	if(!l.values().isEmpty())
+	for(HashSet<T> t: l.values())
+	    if(t.contains(u))
+		return;
+	    if(l.containsKey(root))
+		l.get(root).add(u);
+	    else{
+		l.put(root, new HashSet<T>());
+		l.get(root).add(u);
+	    }
+	    for(T v: getInNeighbours(u, g))
+		assign(v,root, g, l);
+	   
+    }
+    public static<T, E> Collection<? extends Collection<T>> kosarajus_algorithm(IGraph<T,E> graph){
+	HashMap<T,HashSet<T>> sccs = new HashMap<T,HashSet<T>>();
+	HashSet<T> L = new HashSet<T>();
+	HashSet<T> unvisited = new HashSet<T>();
+	for(T t: graph.getNodes()){
+	    unvisited.add(t);
+	}
+	for(T t: graph.getNodes()){
+	    visit(t,graph,unvisited,L);
+	}
+	for(T t: L){
+	    assign(t,t,graph,sccs);
+	}
+	return sccs.values();
+    }
     private static <T, E> Collection<T> reconstruct(T start, HashMap<T, T> backtrack) {
 	LinkedList<T> path = new LinkedList<T>();
 	T c = start;
