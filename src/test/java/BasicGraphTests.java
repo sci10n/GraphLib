@@ -5,13 +5,13 @@ import com.CMS.Si10n.Graphlib.Graph;
 
 import junit.framework.TestCase;
 
-public class BasicGraphOoperations extends TestCase{
+public class BasicGraphTests extends TestCase{
 
     //=============================================
     //Tests graph creation and basic data functions
     //=============================================
     @Test
-    public void testGraphCreation(){
+    public void testBasicGraph(){
 	//Create a graph and check if it's empty
 	Graph<Integer,Integer> graph = new Graph<Integer,Integer>();
 	assertTrue("Graph not empty on instansiation!", graph.getNodes().isEmpty());

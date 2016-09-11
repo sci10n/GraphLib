@@ -6,7 +6,8 @@ import org.junit.runners.Suite;
 @RunWith(Suite.class)
 
 @Suite.SuiteClasses({
-    BasicGraphOoperations.class
+    BasicGraphTests.class,
+    AlgorithmTests.class
 })
 public class TestSuite {
 

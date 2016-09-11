@@ -22,9 +22,11 @@ public class Graph<T, E> extends AbstractGraph<T, E> {
 	nodes = new Vector<T>();
     }
 
-    public Vector<T> getNodes() {
+    @Override
+    public Collection<T> getNodes() {
 	return nodes;
     }
+
 
     public HashMap<T, HashMap<T, E>> getEdges() {
 	return edges;

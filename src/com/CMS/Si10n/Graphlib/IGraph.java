@@ -126,5 +126,7 @@ public interface IGraph<T, E> {
      * @param op
      */
     public void forEachNode(GraphNodeOperator<T> op);
+    
+    public Collection<T> getNodes();
 
 }
