@@ -1,5 +1,6 @@
 # GraphLib
-A Java Library for the Graph data structure
+Graphs in a .jar
+
 #### Work in progress
 
 ***
