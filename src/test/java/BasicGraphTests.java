@@ -11,7 +11,7 @@ public class BasicGraphTests extends TestCase{
     //Tests graph creation and basic data functions
     //=============================================
     @Test
-    public void BasicGraphTets(){
+    public void testBasicGraph(){
 	//Create a graph and check if it's empty
 	Graph<Integer,Integer> graph = new Graph<Integer,Integer>();
 	assertTrue("Graph not empty on instansiation!", graph.getNodes().isEmpty());

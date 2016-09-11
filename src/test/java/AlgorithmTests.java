@@ -15,7 +15,7 @@ public class AlgorithmTests extends TestCase {
     // Tests for the different algorithms implemented in the library
     // =============================================================
     @Test
-    public void testGraphCreation() {
+    public void testGraphAlgorithms() {
 	// Create a graph and populate with edges and nodes
 	Graph<Integer, Integer> graph = new Graph<Integer, Integer>();
 
