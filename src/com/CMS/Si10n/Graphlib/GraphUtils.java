@@ -12,15 +12,15 @@ import java.util.Vector;
 
 /**
  * 
- * @author HQ Utility methods to use with Graphs. Mostly search but some sort
- *         functions might be added Both start and goal needs to be in the same
- *         AbstractGraph for the search to find a connection.
+ * @author Sciion
+ * 	   Utility methods to use with Graphs.
  */
 
 public class GraphUtils {
 
     /**
      * Super dirty way of cloning a Graph
+     * Shallow copy of the nodes and edges.
      * 
      * @param graph
      * @return null if fail, otherwise the new copy
@@ -129,15 +129,12 @@ public class GraphUtils {
     }
 
     /**
-     * If the AbstractGraph doesn't have edges recalculated to fit the
-     * heuristic, change it! <br>
      * 
      * @param start
      * @param goal
      * @param graph
      * @param comp
-     *            Comparator used to order the nodes in the frontier. is a
-     *            parameter because of dynamics
+     *            Comparator used to order the nodes in the frontier.
      * @return
      */
     public static <T, E> Collection<T> a_star_search(T start, T goal, IGraph<T, E> graph, Comparator<T> comp) {
