@@ -1,5 +1,6 @@
 # GraphLib
-A Java Library for the Graph data structure
+Graphs in a .jar
+
 #### Work in progress
 
 ***
@@ -20,6 +21,8 @@ The library consists of three main parts
     * [BFS](https://en.wikipedia.org/wiki/Breadth-first_search)
     * [A*](https://en.wikipedia.org/wiki/A*_search_algorithm)
     * [FloodFill](https://en.wikipedia.org/wiki/Flood_fill)
+    * [Tarjan's algorithm](https://en.wikipedia.org/wiki/Tarjan%27s_strongly_connected_components_algorithm)
+    * [Kosaraju's algorithm](https://en.wikipedia.org/wiki/Kosaraju%27s_algorithm)
 * Testcases to be used for development testing and examples
 
 ***
