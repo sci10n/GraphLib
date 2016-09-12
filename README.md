@@ -15,15 +15,16 @@ Graphs in a .jar
 
 ## Content
 The library consists of three main parts
-* Fully templated AbstractGraph interfaces with one concrete [Directed Graph](https://en.wikipedia.org/wiki/Directed_graph)
-* A GraphUtils class with static methods for some simple graph search algortihms like 
+* Fully generic graph interface with one concrete [Directed Graph](https://en.wikipedia.org/wiki/Directed_graph) class implemented using adjacency matrix. 
+* A GraphUtils class with common graph-algorithms such as: 
     * [DFS](https://en.wikipedia.org/wiki/Depth-first_search)
     * [BFS](https://en.wikipedia.org/wiki/Breadth-first_search)
     * [A*](https://en.wikipedia.org/wiki/A*_search_algorithm)
     * [FloodFill](https://en.wikipedia.org/wiki/Flood_fill)
     * [Tarjan's algorithm](https://en.wikipedia.org/wiki/Tarjan%27s_strongly_connected_components_algorithm)
     * [Kosaraju's algorithm](https://en.wikipedia.org/wiki/Kosaraju%27s_algorithm)
-* Testcases to be used for development testing and examples
+    * [Topological Sorting](https://en.wikipedia.org/wiki/Topological_sorting)
+* Usage examples
 
 ***
 
